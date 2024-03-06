@@ -13,6 +13,11 @@ test('test', async ({ page }) => {
   await page.getByText('Account Assistant').click();
   await page.getByRole('button', { name: 'Search' }).click();
   await page.getByText('No Records Found').click();
+  await page.getByPlaceholder('Search').click();
+  await page.getByPlaceholder('Search').fill('My Info');
+  await page.getByRole('link', { name: 'My Info' }).click();
+  await page.locator('form').filter({ hasText: 'Employee Full NameEmployee' }).getByRole('button').click();
+  await page.getByRole('link', { name: 'Dashboard' }).click();
   await page.getByRole('img', { name: 'profile picture' }).click();
   await page.getByRole('menuitem', { name: 'Logout' }).click();
   await expect(page.getByRole('heading')).toContainText('Login');
